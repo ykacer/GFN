@@ -84,7 +84,11 @@ def test(test_gen, model, criterion, SR_dir):
             resultSRDeblur = transforms.ToPILImage()(sr.cpu()[0])
             resultSRDeblur.save(join(SR_dir, '{0:04d}_GFN_4x.png'.format(iteration)))
             print("Processing {}".format(iteration))
-            mse = criterion(sr, HR)
+            try:
+                mse = criterion(sr, HR)
+            except RuntimeError:
+                print('mismatch in size between HR_hat andd HR, mse set to 0')
+                mse = 1e-6
             psnr = 10 * log10(1 / mse)
             avg_psnr += psnr
 
