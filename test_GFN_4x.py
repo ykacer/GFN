@@ -103,6 +103,7 @@ def model_test(model):
     print(opt)
     test(testloader, model, criterion, SR_dir)
 
+os.chdir(os.path.dirname(__file__))
 opt = parser.parse_args()
 root_val_dir = opt.dataset# #----------Validation path
 SR_dir = join(root_val_dir, 'Results')  #--------------------------SR results save path
