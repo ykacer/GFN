@@ -87,7 +87,7 @@ def test(test_gen, model, criterion, SR_dir):
             try:
                 mse = criterion(sr, HR)
             except RuntimeError:
-                print('mismatch in size between HR_hat andd HR, mse set to 0')
+                print('mismatch in size between HR_hat and HR, mse set to 0')
                 mse = 1e-6
             psnr = 10 * log10(1 / mse)
             avg_psnr += psnr
